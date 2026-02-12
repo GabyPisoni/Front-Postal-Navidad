@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body style={{ margin: 0, padding: 0 }}>
+      <body>
         <CssBaseline />
         {children}
       </body>
