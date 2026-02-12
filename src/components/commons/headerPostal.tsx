@@ -40,7 +40,6 @@ export const HeaderPostal = () => {
                 🎄 Creador de Postales Navideñas ✨
             </Typography>
 
-            {/* Subtítulo */}
             <Typography
                 variant="h6"
                 component="p"

@@ -104,7 +104,7 @@ export const ProgressBar  = () =>   {
       <Stepper
         alternativeLabel
         activeStep={1}
-        connector={null}  // Quita la línea de conexión
+        connector={null}  
       >
         {steps.map((label) => (
           <Step key={label}>
