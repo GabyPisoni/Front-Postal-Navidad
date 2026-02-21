@@ -4,14 +4,14 @@ import Stack from '@mui/material/Stack';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import SettingsIcon from '@mui/icons-material/Settings';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 import StepConnector, {
   stepConnectorClasses,
 } from '@mui/material/StepConnector';
 import { StepIconProps } from '@mui/material/StepIcon';
-
+import BrushIcon from '@mui/icons-material/Brush';
+import MessageIcon from '@mui/icons-material/Message';
+import PreviewIcon from '@mui/icons-material/Preview';
+import { useAppSelector } from '@/hooks';
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 22,
@@ -77,9 +77,9 @@ function ColorlibStepIcon(props: StepIconProps) {
   const { active, completed, className } = props;
 
   const icons: { [index: string]: React.ReactElement<unknown> } = {
-    1: <SettingsIcon />,
-    2: <GroupAddIcon />,
-    3: <VideoLabelIcon />,
+    1: <BrushIcon />,
+    2: <MessageIcon />,
+    3: <PreviewIcon />,
   };
 
   return (
@@ -93,17 +93,19 @@ function ColorlibStepIcon(props: StepIconProps) {
 }
 
 const steps = [
-  'Select campaign settings',
-  'Create an ad group',
-  'Create an ad',
+  'Decorar la postal',
+  'Crear mensaje',
+  'Revision y envio',
 ];
 
 export const ProgressBar  = () =>   {
+   const currentStep = useAppSelector((state:any) => (
+    state.stepper.currentStep));
   return (
     <Stack sx={{ width: '100%' }} spacing={4}>
       <Stepper
         alternativeLabel
-        activeStep={1}
+        activeStep={currentStep}
         connector={null}  
       >
         {steps.map((label) => (

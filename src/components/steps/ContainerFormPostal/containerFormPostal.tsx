@@ -1,5 +1,5 @@
 import { Container, TextareaAutosize, TextField } from "@mui/material";
-import GridStamp from "./gridStamp";
+import GridStamp from "./components/gridStamp";
 
 const ContainerFormPostal = () => {
   return (
