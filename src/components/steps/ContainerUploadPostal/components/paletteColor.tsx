@@ -3,6 +3,8 @@ import { useState } from "react";
 import { IconButton, Box, Typography, Stack } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import PaletteIcon from "@mui/icons-material/Palette";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { setColor } from "@/features/stepDataSlices";
 
 const colors = [
   { name: "Rojo", hex: "#C41E3A" },
@@ -16,8 +18,13 @@ const colors = [
 ];
 
 const PaletteColor = () => {
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const dispatchStepData = useAppDispatch();
+const colorSelected = useAppSelector((state:any) => state.stepData.color);
+  const handleColorSelect = (colorHex: string) => {
+    dispatchStepData(setColor(colorHex));
+  };
   return (
     <Box sx={{ padding: "12px" }}>
       <Stack direction="row" spacing={1} alignItems="center" sx={{ marginBottom: "20px" }}>
@@ -30,7 +37,7 @@ const PaletteColor = () => {
         {colors.map((color) => (
           <Grid key={color.hex} size={3}>
             <IconButton
-              onClick={() => setSelectedColor(color.hex)}
+              onClick={() => handleColorSelect(color.hex)}
               title={color.name}
               sx={{
                 width: 60,
@@ -51,7 +58,7 @@ const PaletteColor = () => {
       </Grid>
       {selectedColor && (
         <Typography variant="body2" sx={{ color: "#666" }}>
-          Color seleccionado: <strong>{selectedColor}</strong>
+          Color seleccionado: <strong>{colorSelected}</strong>
         </Typography>
       )}
     </Box>

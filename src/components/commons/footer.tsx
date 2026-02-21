@@ -1,3 +1,4 @@
+"use client";
 import { Button, Stack } from "@mui/material";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
