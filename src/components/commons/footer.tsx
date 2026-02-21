@@ -3,13 +3,21 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AttachEmailIcon from '@mui/icons-material/AttachEmail';
 import SaveIcon from '@mui/icons-material/Save';
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { nextStep, prevStep } from "@/features/stepperSlice";
 
-const Footer = ({setStepState, stepState}: {setStepState: (step: number) => void, stepState: number}) => {
+const Footer = () => {
+const currentStep = useAppSelector((state:any) => state.stepper.currentStep);
+const dispatchStepper = useAppDispatch();
+
 const handleNext = () => {
-    setStepState( stepState + 1);
+    if(currentStep >= 0 && currentStep < 3)
+        dispatchStepper(nextStep());
 }
+
 const handleBack = () => {
-    setStepState( stepState - 1);
+    if(currentStep > 0)
+        dispatchStepper(prevStep());
 }
   return (
         <Stack direction="row" spacing={2} sx={{ mt: 3 }}>
@@ -32,7 +40,7 @@ const handleBack = () => {
                             background: 'linear-gradient(135deg, #a01028 0%, #1a0829 100%)'
                         }
                     }}><ArrowBackIcon />Anterior </Button>
-                 {stepState !==3 ? (<Button fullWidth variant="contained" sx={{ 
+                 {currentStep !==2 ? (<Button fullWidth variant="contained" sx={{ 
                         padding: '16px 35px',
                         background: 'linear-gradient(135deg, #c31432 0%, #240b36 100%)',
                         color: '#ffffff',

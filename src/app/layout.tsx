@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { CssBaseline } from "@mui/material";
-
+import Providers from "@/app/providers";
 export const metadata: Metadata = {
   title: "Postal Creator",
   description: "Create beautiful Christmas postcards",
@@ -12,11 +11,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body>
-        <CssBaseline />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
-}
+};
